@@ -6,7 +6,17 @@ const initState = {
 };
 
 const todoReducer = (state = initState, action) => {
-  return state;
+  switch (action.type) {
+    case 'ADD_TODO':
+      let newTodo = { id: Math.random(), content: action.content };
+
+      return {
+        ...state,
+        todos: [...state.todos, newTodo],
+      };
+    default:
+      return state;
+  }
 };
 
 export default todoReducer;

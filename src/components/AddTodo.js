@@ -2,8 +2,27 @@ import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import addTodo from '../actions/todoActions';
+import { connect } from 'react-redux';
 class AddTodo extends Component {
+  state = {
+    content: '',
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addTodo(this.state.content);
+    this.setState({
+      content: '',
+    });
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      content: e.target.value,
+    });
+  };
+
   render() {
     const useStyles = makeStyles((theme) => ({
       root: {
@@ -13,11 +32,28 @@ class AddTodo extends Component {
         },
       },
     }));
+
     return (
       <div>
-        <form className={useStyles.root} noValidate autoComplete='off'>
-          <TextField id='standard-basic' label='Add Todo' fullWidth />
-          <Button variant='contained' color='primary' style={{ marginTop: 10 }}>
+        <form
+          className={useStyles.root}
+          noValidate
+          autoComplete='off'
+          onSubmit={this.handleSubmit}
+        >
+          <TextField
+            id='standard-basic'
+            label='Add Todo'
+            fullWidth
+            onChange={this.handleChange}
+            value={this.state.content}
+          />
+          <Button
+            variant='contained'
+            color='primary'
+            style={{ marginTop: 10 }}
+            type='submit'
+          >
             Add Todo
           </Button>
         </form>
@@ -26,4 +62,10 @@ class AddTodo extends Component {
   }
 }
 
-export default AddTodo;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addTodo: (content) => dispatch(addTodo(content)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(AddTodo);
