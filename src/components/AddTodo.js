@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import addTodo from '../actions/todoActions';
+import { addTodo } from '../actions/todoActions';
 import { connect } from 'react-redux';
 class AddTodo extends Component {
   state = {
@@ -47,6 +47,7 @@ class AddTodo extends Component {
             fullWidth
             onChange={this.handleChange}
             value={this.state.content}
+            style={{ marginTop: 10 }}
           />
           <Button
             variant='contained'
