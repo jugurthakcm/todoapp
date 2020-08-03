@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListItem, ListItemText, Divider } from '@material-ui/core';
-import { deleteTodo } from '../actions/todoActions';
+import { deleteTodo } from '../store/actions/todoActions';
 import { connect } from 'react-redux';
 
 class Todos extends Component {
