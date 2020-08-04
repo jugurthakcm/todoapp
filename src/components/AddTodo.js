@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { addTodo } from '../actions/todoActions';
+import { addTodo } from '../store/actions/todoActions';
 import { connect } from 'react-redux';
 class AddTodo extends Component {
   state = {

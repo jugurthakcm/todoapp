@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { ListItem, ListItemText, Divider } from '@material-ui/core';
 import { deleteTodo } from '../store/actions/todoActions';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class Todos extends Component {
   handleClick = (id) => {
@@ -9,32 +11,36 @@ class Todos extends Component {
   };
 
   render() {
-    const todos = this.props.todos.length ? (
-      this.props.todos.map((todo) => {
-        return (
-          <div
-            key={todo.id}
-            onClick={() => {
-              this.handleClick(todo.id);
-            }}
-          >
-            <ListItem button>
-              <ListItemText primary={todo.content} />
-            </ListItem>
-            <Divider />
-          </div>
-        );
-      })
-    ) : (
-      <p>None</p>
-    );
-    return <div>{todos}</div>;
+    if (this.props.todos) {
+      const todos = this.props.todos.length ? (
+        this.props.todos.map((todo) => {
+          return (
+            <div
+              key={todo.id}
+              onClick={() => {
+                this.handleClick(todo.id);
+              }}
+            >
+              <ListItem button>
+                <ListItemText primary={todo.content} />
+              </ListItem>
+              <Divider />
+            </div>
+          );
+        })
+      ) : (
+        <p>None</p>
+      );
+      return <div>{todos}</div>;
+    } else {
+      return <div>Loading todos...</div>;
+    }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.todoReducer.todos,
+    todos: state.firestore.ordered.todos,
   };
 };
 
@@ -44,4 +50,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Todos);
+export default compose(
+  firestoreConnect([{ collection: 'todos' }]),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Todos);
