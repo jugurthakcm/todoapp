@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from './store/reducers/rootReducer';
 import firebase from 'firebase/app';
-import 'firebase/auth';
 import 'firebase/firestore';
 import { createFirestoreInstance } from 'redux-firestore';
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const fbConfig = {
   apiKey: 'AIzaSyBwuUgBt79V7bTBP6PvP6ao_T8cTShK4mg',
@@ -26,7 +26,6 @@ const fbConfig = {
 };
 
 firebase.initializeApp(fbConfig);
-firebase.firestore();
 
 const rrfProps = {
   firebase,

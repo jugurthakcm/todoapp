@@ -1,7 +1,14 @@
+import firebase from 'firebase/app';
+
 export const addTodo = (content) => {
-  return {
-    type: 'ADD_TODO',
-    content,
+  return (dispatch) => {
+    firebase
+      .firestore()
+      .collection('todos')
+      .add({ content, timeStamps: new Date() })
+      .then(() => {
+        dispatch({ type: 'ADD_TODO', content });
+      });
   };
 };
 
