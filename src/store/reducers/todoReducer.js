@@ -1,5 +1,3 @@
-import firebase from 'firebase/app';
-
 const initState = {
   todos: [
     { id: 1, content: 'play football' },
@@ -10,18 +8,15 @@ const initState = {
 const todoReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      firebase
-        .firestore()
-        .collection('todos')
-        .add({ content: action.content, timeStamps: new Date() });
       return state;
-
+    case 'ADD_TODO_ERROR':
+      console.log(action.err);
+      break;
     case 'DELETE_TODO':
-      let newTodos = state.todos.filter((todo) => todo.id !== action.id);
-      return {
-        ...state,
-        todos: newTodos,
-      };
+      return state;
+    case 'DELETE_TODO_ERROR':
+      console.log(action.err);
+      break;
 
     default:
       return state;
