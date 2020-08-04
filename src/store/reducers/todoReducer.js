@@ -13,11 +13,10 @@ const todoReducer = (state = initState, action) => {
       console.log(action.err);
       break;
     case 'DELETE_TODO':
-      let newTodos = state.todos.filter((todo) => todo.id !== action.id);
-      return {
-        ...state,
-        todos: newTodos,
-      };
+      return state;
+    case 'DELETE_TODO_ERROR':
+      console.log(action.err);
+      break;
 
     default:
       return state;

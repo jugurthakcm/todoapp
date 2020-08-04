@@ -16,8 +16,17 @@ export const addTodo = (content) => {
 };
 
 export const deleteTodo = (id) => {
-  return {
-    type: 'DELETE_TODO',
-    id,
+  return (dispatch) => {
+    firebase
+      .firestore()
+      .collection('todos')
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: 'DELETE_TODO' });
+      })
+      .catch((err) => {
+        dispatch({ type: 'DELETE_TODO_ERROR', err });
+      });
   };
 };
