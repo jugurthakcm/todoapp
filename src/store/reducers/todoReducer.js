@@ -8,9 +8,10 @@ const initState = {
 const todoReducer = (state = initState, action) => {
   switch (action.type) {
     case 'ADD_TODO':
-      console.log('data added', action.content);
       return state;
-
+    case 'ADD_TODO_ERROR':
+      console.log(action.err);
+      break;
     case 'DELETE_TODO':
       let newTodos = state.todos.filter((todo) => todo.id !== action.id);
       return {

@@ -8,6 +8,9 @@ export const addTodo = (content) => {
       .add({ content, timeStamps: new Date() })
       .then(() => {
         dispatch({ type: 'ADD_TODO', content });
+      })
+      .catch((err) => {
+        dispatch({ type: 'ADD_TODO_ERROR', err });
       });
   };
 };
