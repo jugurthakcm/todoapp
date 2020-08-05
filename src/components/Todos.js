@@ -29,7 +29,7 @@ class Todos extends Component {
           );
         })
       ) : (
-        <p>None</p>
+        <p>No todos yet</p>
       );
       return <div>{todos}</div>;
     } else {

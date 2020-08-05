@@ -1,9 +1,7 @@
-import firebase from 'firebase/app';
-
 export const addTodo = (content) => {
-  return (dispatch) => {
-    firebase
-      .firestore()
+  return (dispatch, getState, getFirestore) => {
+    const firestore = getFirestore();
+    firestore
       .collection('todos')
       .add({ content, timeStamps: new Date() })
       .then(() => {
@@ -16,9 +14,9 @@ export const addTodo = (content) => {
 };
 
 export const deleteTodo = (id) => {
-  return (dispatch) => {
-    firebase
-      .firestore()
+  return (dispatch, getState, getFirestore) => {
+    const firestore = getFirestore();
+    firestore
       .collection('todos')
       .doc(id)
       .delete()
