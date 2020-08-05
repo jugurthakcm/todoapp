@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { addTodo } from '../store/actions/todoActions';
 import { connect } from 'react-redux';
+
 class AddTodo extends Component {
   state = {
     content: '',
@@ -43,7 +44,7 @@ class AddTodo extends Component {
           noValidate
           autoComplete='off'
           onSubmit={this.handleSubmit}
-          style={{ marginBottom: 30 }}
+          style={{ marginBottom: 30, marginTop: 30 }}
         >
           <FormControl className='form-control'>
             <InputLabel htmlFor='standard-basic'>Todo</InputLabel>
