@@ -9,3 +9,13 @@ h1 {
   text-align: center;
   font-size: 2.5rem;
 }
+
+.form-control {
+  width: 100%;
+}
+
+.no-todos,
+.loading-todos {
+  text-align: center;
+  font-size: 1.2rem;
+}

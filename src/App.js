@@ -8,8 +8,8 @@ function App() {
     <div className='App'>
       <Container maxWidth='sm'>
         <h1>Todo App</h1>
-        <TodoContainer />
         <AddTodo />
+        <TodoContainer />
       </Container>
     </div>
   );

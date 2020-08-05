@@ -29,11 +29,11 @@ class Todos extends Component {
           );
         })
       ) : (
-        <p>No todos yet</p>
+        <p className='no-todos'>No todos yet</p>
       );
       return <div>{todos}</div>;
     } else {
-      return <div>Loading todos...</div>;
+      return <div className='loading-todos'>Loading todos...</div>;
     }
   }
 }

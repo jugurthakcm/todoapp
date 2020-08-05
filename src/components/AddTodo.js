@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import { addTodo } from '../store/actions/todoActions';
 import { connect } from 'react-redux';
 class AddTodo extends Component {
@@ -40,23 +43,25 @@ class AddTodo extends Component {
           noValidate
           autoComplete='off'
           onSubmit={this.handleSubmit}
+          style={{ marginBottom: 30 }}
         >
-          <TextField
-            id='standard-basic'
-            label='Add Todo'
-            fullWidth
-            onChange={this.handleChange}
-            value={this.state.content}
-            style={{ marginTop: 10 }}
-          />
-          <Button
-            variant='contained'
-            color='primary'
-            style={{ marginTop: 10 }}
-            type='submit'
-          >
-            Add Todo
-          </Button>
+          <FormControl className='form-control'>
+            <InputLabel htmlFor='standard-basic'>Todo</InputLabel>
+            <Input
+              id='standard-basic'
+              label='Add Todo'
+              fullWidth
+              onChange={this.handleChange}
+              value={this.state.content}
+              endAdornment={
+                <InputAdornment position='end'>
+                  <Button color='primary' type='submit'>
+                    Add Todo
+                  </Button>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
         </form>
       </div>
     );
