@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
-import { googleSign } from '../../store/actions/authActions';
+import { signIn } from '../../store/actions/authActions';
 
 class SignedIn extends Component {
   handleClick = () => {
-    this.props.googleSign();
+    this.props.signIn();
   };
   render() {
     return (
@@ -23,7 +23,7 @@ class SignedIn extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    googleSign: () => dispatch(googleSign()),
+    signIn: () => dispatch(signIn()),
   };
 };
 
