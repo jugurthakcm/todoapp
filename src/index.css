@@ -5,7 +5,21 @@ body {
 }
 
 h1 {
-  color: #3f51b5;
+  color: #1976d2;
   text-align: center;
   font-size: 2.5rem;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.signed-in {
+  display: flex;
 }

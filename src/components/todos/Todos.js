@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { ListItem, ListItemText, Divider } from '@material-ui/core';
-import { deleteTodo } from '../store/actions/todoActions';
+import { deleteTodo } from '../../store/actions/todoActions';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
+import Alert from '@material-ui/lab/Alert';
 class Todos extends Component {
   handleClick = (id) => {
     this.props.deleteTodo(id);
@@ -29,11 +30,13 @@ class Todos extends Component {
           );
         })
       ) : (
-        <p>None</p>
+        <Alert severity='success' color='info'>
+          No todos yet
+        </Alert>
       );
       return <div>{todos}</div>;
     } else {
-      return <div>Loading todos...</div>;
+      return <Alert severity='info'>Loading todos...</Alert>;
     }
   }
 }
