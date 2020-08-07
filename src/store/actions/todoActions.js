@@ -1,5 +1,5 @@
 export const addTodo = (content) => {
-  return (dispatch, getState, getFirestore) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     firestore
       .collection('todos')
@@ -14,7 +14,7 @@ export const addTodo = (content) => {
 };
 
 export const deleteTodo = (id) => {
-  return (dispatch, getState, getFirestore) => {
+  return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
     firestore
       .collection('todos')

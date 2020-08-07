@@ -19,3 +19,7 @@ h1 {
   justify-content: flex-end;
   margin-top: 1rem;
 }
+
+.signed-in {
+  display: flex;
+}
