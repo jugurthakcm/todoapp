@@ -5,13 +5,12 @@ import SignedOut from './SignedOut';
 
 const GoogleSign = (props) => {
   const signed = props.auth ? <SignedIn /> : <SignedOut />;
-  return <div className='login-container'>{props.loaded && signed}</div>;
+  return <div className='login-container'>{signed}</div>;
 };
 
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth.uid,
-    loaded: state.firebase.auth.isLoaded,
   };
 };
 

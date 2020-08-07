@@ -12,11 +12,14 @@ class Todos extends Component {
   };
 
   render() {
-    if (this.props.todos) {
-      const todos = this.props.todos.length ? (
-        this.props.todos
-          .filter((todo) => todo.userId === this.props.userId)
-          .map((todo) => {
+    if (this.props.userId) {
+      if (this.props.todos) {
+        const data = this.props.todos.length
+          ? this.props.todos.filter((todo) => todo.userId === this.props.userId)
+          : [];
+
+        const todos = data.length ? (
+          data.map((todo) => {
             return (
               <div
                 key={todo.id}
@@ -31,14 +34,17 @@ class Todos extends Component {
               </div>
             );
           })
-      ) : (
-        <Alert severity='success' color='info'>
-          No todos yet
-        </Alert>
-      );
-      return <div>{todos}</div>;
+        ) : (
+          <Alert severity='success' color='info'>
+            No todos yet
+          </Alert>
+        );
+        return <div>{todos}</div>;
+      } else {
+        return <Alert severity='info'>Loading todos...</Alert>;
+      }
     } else {
-      return <Alert severity='info'>Loading todos...</Alert>;
+      return <div></div>;
     }
   }
 }

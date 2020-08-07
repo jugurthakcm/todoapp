@@ -36,38 +36,44 @@ class AddTodo extends Component {
         },
       },
     }));
-
-    return (
-      <div>
-        <form
-          className={useStyles.root}
-          noValidate
-          autoComplete='off'
-          onSubmit={this.handleSubmit}
-          style={{ marginBottom: 30, marginTop: 30 }}
-        >
-          <FormControl className='form-control'>
-            <InputLabel htmlFor='standard-basic'>Todo</InputLabel>
-            <Input
-              id='standard-basic'
-              label='Add Todo'
-              fullWidth
-              onChange={this.handleChange}
-              value={this.state.content}
-              endAdornment={
-                <InputAdornment position='end'>
-                  <Button color='primary' type='submit'>
-                    Add Todo
-                  </Button>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
-        </form>
-      </div>
+    const auth = this.props.auth ? (
+      <form
+        className={useStyles.root}
+        noValidate
+        autoComplete='off'
+        onSubmit={this.handleSubmit}
+        style={{ marginBottom: 30, marginTop: 30 }}
+      >
+        <FormControl className='form-control'>
+          <InputLabel htmlFor='standard-basic'>Todo</InputLabel>
+          <Input
+            id='standard-basic'
+            label='Add Todo'
+            fullWidth
+            onChange={this.handleChange}
+            value={this.state.content}
+            endAdornment={
+              <InputAdornment position='end'>
+                <Button color='primary' type='submit'>
+                  Add Todo
+                </Button>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
+      </form>
+    ) : (
+      <p className='not-signed-in'>You need to login to use the Todo app</p>
     );
+    return <div>{auth}</div>;
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth.uid,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -75,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(AddTodo);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);
