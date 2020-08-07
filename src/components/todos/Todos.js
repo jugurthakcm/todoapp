@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ListItem, ListItemText, Divider } from '@material-ui/core';
-import { deleteTodo } from '../store/actions/todoActions';
+import { deleteTodo } from '../../store/actions/todoActions';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';

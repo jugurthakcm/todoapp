@@ -5,7 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { addTodo } from '../store/actions/todoActions';
+import { addTodo } from '../../store/actions/todoActions';
 import { connect } from 'react-redux';
 
 class AddTodo extends Component {
