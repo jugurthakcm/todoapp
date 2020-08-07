@@ -9,7 +9,6 @@ const GoogleSign = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     auth: state.firebase.auth.uid,
     loaded: state.firebase.auth.isLoaded,
