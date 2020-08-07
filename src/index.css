@@ -13,3 +13,9 @@ h1 {
 .form-control {
   width: 100%;
 }
+
+.login-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
