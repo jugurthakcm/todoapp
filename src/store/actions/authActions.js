@@ -1,4 +1,4 @@
-export const googleSign = () => {
+export const signIn = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firebase = getFirebase();
     const firestore = getFirestore();
@@ -25,6 +25,21 @@ export const googleSign = () => {
         // // The firebase.auth.AuthCredential type that was used.
         // var credential = error.credential;
         // // ...
+      });
+  };
+};
+
+export const signOut = () => {
+  return (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase();
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        // Sign-out successful.
+      })
+      .catch(function (error) {
+        // An error happened.
       });
   };
 };

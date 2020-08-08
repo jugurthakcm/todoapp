@@ -3,7 +3,11 @@ export const addTodo = (content) => {
     const firestore = getFirestore();
     firestore
       .collection('todos')
-      .add({ content, timeStamps: new Date() })
+      .add({
+        content,
+        timeStamps: new Date(),
+        userId: getState().firebase.auth.uid,
+      })
       .then(() => {
         dispatch({ type: 'ADD_TODO', content });
       })

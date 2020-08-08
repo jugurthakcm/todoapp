@@ -14,12 +14,36 @@ h1 {
   width: 100%;
 }
 
-.login-container {
+.navbar {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
 }
 
-.signed-in {
+.signed-in-links {
   display: flex;
+  align-items: center;
+}
+
+.sign-out-container {
+  margin-top: 4rem;
+}
+
+.sign-out-message {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.login-btn {
+  text-align: center;
+}
+
+@media (max-width: 530px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .signed-in-links {
+    margin-top: 10px;
+  }
 }
