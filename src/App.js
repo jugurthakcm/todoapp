@@ -1,8 +1,8 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import AddTodo from './components/todos/AddTodo';
-import TodoContainer from './components/todos/TodoContainer';
-import GoogleSign from './components/auth/GoogleSign';
+
+import Navbar from './components/layout/Navbar';
+import Main from './components/layout/Main';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -20,10 +20,8 @@ function App() {
     <div className='App'>
       <ThemeProvider theme={theme}>
         <Container maxWidth='md'>
-          <GoogleSign />
-          <h1>Todo App</h1>
-          <AddTodo />
-          <TodoContainer />
+          <Navbar />
+          <Main />
         </Container>
       </ThemeProvider>
     </div>

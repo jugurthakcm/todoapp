@@ -3,20 +3,23 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { signIn } from '../../store/actions/authActions';
 
-class SignedIn extends Component {
+class SignedOut extends Component {
   handleClick = () => {
     this.props.signIn();
   };
   render() {
     return (
-      <Button
-        variant='outlined'
-        color='primary'
-        className='login-btn'
-        onClick={this.handleClick}
-      >
-        Login using Google
-      </Button>
+      <div className='login-btn'>
+        <Button variant='outlined' color='primary' onClick={this.handleClick}>
+          <img
+            src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/200px-Google_%22G%22_Logo.svg.png'
+            alt='google icon'
+            width='16px'
+            style={{ marginRight: 10 }}
+          />
+          Login using Google
+        </Button>
+      </div>
     );
   }
 }
@@ -27,4 +30,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SignedIn);
+export default connect(null, mapDispatchToProps)(SignedOut);
