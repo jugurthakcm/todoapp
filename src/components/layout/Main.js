@@ -6,6 +6,7 @@ import TodoContainer from '../todos/TodoContainer';
 import SignedOut from '../auth/SignedOut';
 
 function Main(props) {
+  const { loaded } = props;
   const signed = props.auth ? (
     <div>
       <AddTodo />
@@ -20,7 +21,7 @@ function Main(props) {
   return (
     <div>
       <h1>Todo App</h1>
-      {signed}
+      {loaded && signed}
     </div>
   );
 }
@@ -28,6 +29,7 @@ function Main(props) {
 const mapStateToProps = (state) => {
   return {
     auth: state.firebase.auth.uid,
+    loaded: state.firebase.auth.isLoaded,
   };
 };
 

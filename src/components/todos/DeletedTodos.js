@@ -1,37 +1,41 @@
 import React, { Component } from 'react';
 import { ListItem, ListItemText, Divider } from '@material-ui/core';
-import { checkTodo } from '../../store/actions/todoActions';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import Alert from '@material-ui/lab/Alert';
+import { deleteTodo } from '../../store/actions/todoActions';
 import IconButton from '@material-ui/core/IconButton';
-import CheckIcon from '@material-ui/icons/Check';
-class Todos extends Component {
-  handleClick = (id, content) => {
-    this.props.checkTodo(id, content);
+import DeleteIcon from '@material-ui/icons/Delete';
+class DeletedTodos extends Component {
+  handleClick = (id) => {
+    this.props.deleteTodo(id);
   };
-
   render() {
     if (this.props.userId) {
-      if (this.props.todos) {
-        const data = this.props.todos.length
-          ? this.props.todos.filter((todo) => todo.userId === this.props.userId)
+      if (this.props.deletedTodos) {
+        const data = this.props.deletedTodos.length
+          ? this.props.deletedTodos.filter(
+              (todo) => todo.userId === this.props.userId
+            )
           : [];
 
-        const todos = data.length ? (
+        const deletedTodos = data.length ? (
           data.map((todo) => {
             return (
               <div
                 key={todo.id}
                 onClick={() => {
-                  this.handleClick(todo.id, todo.content);
+                  this.handleClick(todo.id);
                 }}
               >
                 <ListItem button>
-                  <ListItemText primary={todo.content} />
+                  <ListItemText
+                    primary={todo.content}
+                    className='deleted-todo-text'
+                  />
                   <IconButton edge='end' aria-label='delete'>
-                    <CheckIcon />
+                    <DeleteIcon />
                   </IconButton>
                 </ListItem>
                 <Divider />
@@ -39,13 +43,13 @@ class Todos extends Component {
             );
           })
         ) : (
-          <Alert severity='success' color='info'>
-            No todos yet
+          <Alert severity='info' color='info'>
+            No Completed todos yet
           </Alert>
         );
-        return <div>{todos}</div>;
+        return <div>{deletedTodos}</div>;
       } else {
-        return <Alert severity='info'>Loading todos...</Alert>;
+        return <div></div>;
       }
     } else {
       return <div></div>;
@@ -55,18 +59,18 @@ class Todos extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    todos: state.firestore.ordered.todos,
+    deletedTodos: state.firestore.ordered.deletedTodos,
     userId: state.firebase.auth.uid,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkTodo: (id, content) => dispatch(checkTodo(id, content)),
+    deleteTodo: (id, content) => dispatch(deleteTodo(id, content)),
   };
 };
 
 export default compose(
-  firestoreConnect([{ collection: 'todos' }]),
+  firestoreConnect([{ collection: 'deletedTodos' }]),
   connect(mapStateToProps, mapDispatchToProps)
-)(Todos);
+)(DeletedTodos);
