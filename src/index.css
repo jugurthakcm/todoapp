@@ -39,6 +39,12 @@ h1 {
   text-align: center;
 }
 
+.deleted-todo-text {
+  color: rgb(180, 180, 180);
+  text-decoration: line-through;
+  font-style: italic;
+}
+
 @media (max-width: 530px) {
   .navbar {
     flex-direction: column;
