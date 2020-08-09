@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { ListItem, ListItemText, Divider } from '@material-ui/core';
-import { deleteTodo } from '../../store/actions/todoActions';
+import { checkTodo } from '../../store/actions/todoActions';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-
 import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import CheckIcon from '@material-ui/icons/Check';
 class Todos extends Component {
-  handleClick = (id) => {
-    this.props.deleteTodo(id);
+  handleClick = (id, content) => {
+    this.props.checkTodo(id, content);
   };
 
   render() {
@@ -24,11 +25,14 @@ class Todos extends Component {
               <div
                 key={todo.id}
                 onClick={() => {
-                  this.handleClick(todo.id);
+                  this.handleClick(todo.id, todo.content);
                 }}
               >
                 <ListItem button>
                   <ListItemText primary={todo.content} />
+                  <IconButton edge='end' aria-label='delete'>
+                    <CheckIcon />
+                  </IconButton>
                 </ListItem>
                 <Divider />
               </div>
@@ -58,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteTodo: (id) => dispatch(deleteTodo(id)),
+    checkTodo: (id, content) => dispatch(checkTodo(id, content)),
   };
 };
 
