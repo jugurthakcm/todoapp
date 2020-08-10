@@ -13,39 +13,35 @@ class Todos extends Component {
   };
 
   render() {
-    if (this.props.todos) {
-      const data = this.props.todos.length
-        ? this.props.todos.filter((todo) => todo.userId === this.props.userId)
-        : [];
+    const data = this.props.todos
+      ? this.props.todos.filter((todo) => todo.userId === this.props.userId)
+      : [];
 
-      const todos = data.length ? (
-        data.map((todo) => {
-          return (
-            <div
-              key={todo.id}
-              onClick={() => {
-                this.handleClick(todo.id, todo.content);
-              }}
-            >
-              <ListItem button>
-                <ListItemText primary={todo.content} />
-                <IconButton edge='end' aria-label='delete'>
-                  <RadioButtonUncheckedIcon />
-                </IconButton>
-              </ListItem>
-              <Divider />
-            </div>
-          );
-        })
-      ) : (
-        <Alert severity='success' color='info'>
-          No todos yet
-        </Alert>
-      );
-      return <div>{todos}</div>;
-    } else {
-      return <Alert severity='info'>Loading todos...</Alert>;
-    }
+    const todos = data.length ? (
+      data.map((todo) => {
+        return (
+          <div
+            key={todo.id}
+            onClick={() => {
+              this.handleClick(todo.id, todo.content);
+            }}
+          >
+            <ListItem button>
+              <ListItemText primary={todo.content} />
+              <IconButton edge='end' aria-label='delete'>
+                <RadioButtonUncheckedIcon />
+              </IconButton>
+            </ListItem>
+            <Divider />
+          </div>
+        );
+      })
+    ) : (
+      <Alert severity='success' color='info'>
+        No todos yet
+      </Alert>
+    );
+    return <div>{todos}</div>;
   }
 }
 
