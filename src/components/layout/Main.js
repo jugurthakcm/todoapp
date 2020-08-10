@@ -6,8 +6,8 @@ import TodoContainer from '../todos/TodoContainer';
 import SignedOut from '../auth/SignedOut';
 
 function Main(props) {
-  const { loaded } = props;
-  const signed = props.auth ? (
+  const { loaded, auth } = props;
+  const signed = auth ? (
     <div>
       <AddTodo />
       <TodoContainer />
