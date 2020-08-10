@@ -9,10 +9,11 @@ class SignedIn extends Component {
     this.props.signOut();
   };
   render() {
+    const { name, avatar } = this.props;
     return (
       <div className='signed-in-links'>
-        <Avatar alt={this.props.name} src={this.props.avatar} />
-        <p style={{ marginRight: 50, marginLeft: 10 }}>{this.props.name}</p>
+        <Avatar alt={name} src={avatar} />
+        <p style={{ marginRight: 50, marginLeft: 10 }}>{name}</p>
 
         <Button variant='outlined' color='secondary' onClick={this.handleClick}>
           Sign Out

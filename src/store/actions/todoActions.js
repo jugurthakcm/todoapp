@@ -12,7 +12,7 @@ export const addTodo = (content) => {
         dispatch({ type: 'ADD_TODO', content });
       })
       .catch((err) => {
-        dispatch({ type: 'ADD_TODO_ERROR', err });
+        dispatch({ type: 'ADD_TODO_ERROR', err: err.message });
       });
   };
 };
@@ -20,13 +20,16 @@ export const addTodo = (content) => {
 export const checkTodo = (id, content) => {
   return (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore();
-    firestore.collection('todos').doc(id).delete();
-    // .then(() => {
-    //   dispatch({ type: 'DELETE_TODO' });
-    // })
-    // .catch((err) => {
-    //   dispatch({ type: 'DELETE_TODO_ERROR', err });
-    // });
+    firestore
+      .collection('todos')
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({ type: 'LOAD_CHECK_TODO' });
+      })
+      .catch((err) => {
+        dispatch({ type: 'LOAD_CHECK_TODO_ERROR', err: err.message });
+      });
 
     firestore
       .collection('deletedTodos')
@@ -40,7 +43,7 @@ export const checkTodo = (id, content) => {
         dispatch({ type: 'CHECK_TODO' });
       })
       .catch((err) => {
-        dispatch({ type: 'CHECK_TODO_ERROR', err });
+        dispatch({ type: 'CHECK_TODO_ERROR', err: err.message });
       });
   };
 };
@@ -56,7 +59,7 @@ export const deleteTodo = (id) => {
         dispatch({ type: 'DELETE_TODO' });
       })
       .catch((err) => {
-        dispatch({ type: 'DELETE_TODO_ERROR', err });
+        dispatch({ type: 'DELETE_TODO_ERROR', err: err.message });
       });
   };
 };

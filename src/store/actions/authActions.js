@@ -16,15 +16,8 @@ export const signIn = () => {
         });
       })
       .then(() => dispatch({ type: 'LOGIN_SUCCESS' }))
-      .catch(function (error) {
-        // // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // // The email of the user's account used.
-        // var email = error.email;
-        // // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
-        // // ...
+      .catch(function (err) {
+        dispatch({ type: 'LOGIN_ERROR', err: err.message });
       });
   };
 };
@@ -36,10 +29,10 @@ export const signOut = () => {
       .auth()
       .signOut()
       .then(function () {
-        // Sign-out successful.
+        dispatch({ type: 'LOGOUT_SUCCESS' });
       })
-      .catch(function (error) {
-        // An error happened.
+      .catch(function (err) {
+        dispatch({ type: 'LOGOUT_ERROR', err: err.message });
       });
   };
 };
